@@ -38,3 +38,9 @@ On créer l'image avec
 ------------------------Création d'un container-------------------------------
 On créer le conteneur avec 
     docker run --publish 8000:8000 python-django
+
+on peut alors se connecter sur le 127.0.0.1:8000
+
+
+Afin de pouvoir ajouter d'autres conteneurs, j'ai enlevé la commande CMD du Dockerfile, et je l'ai mis dans le docker-compose.yml
+Comme ça on pourra avoir de multiple conteneurs
