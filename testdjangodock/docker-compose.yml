@@ -1,7 +1,16 @@
 app:
   build: .
+  volumes:
+    - ./app
+
+app_migrate:
+  extends:
+    service: app
+  command: python manage.py migrate
+
+app_run:
+  extends:
+    service: app
   command: python manage.py runserver 0.0.0.0:8000
   ports:
     - '8000:8000'
-  volumes:
-    - ./app
