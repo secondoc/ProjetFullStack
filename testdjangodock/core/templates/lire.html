@@ -1,0 +1,14 @@
+<h1>{{ article.titre }} <span class="small">{{ article.article }}</span></h1>
+<p class="infos">Cet article apparait {{ article.nb_apparitions }} fois</p>
+<div class="contenu">
+  <p>Notes:</p>
+  {{ article.notes|linebreaks }}
+</div>
+<div class="classe">
+  <p>Classe:</p>
+  {{ article.classe }}
+</div>
+<div class="vus">
+  <p>Nombre de vus:</p>
+  {{ article.moyenne_vus }}
+</div>

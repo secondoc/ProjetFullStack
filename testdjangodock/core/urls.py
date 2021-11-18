@@ -21,5 +21,10 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home),
-    path("<int:id>", views.search)
+    path("<int:id>", views.search),
+    path("connexion/", views.connexion),
+    path("deconnexion/", views.deconnexion),
+    path("register/", views.register),
+    path("articles/", views.articles),
+    path('article/<int:id>', views.lire, name='lire')
 ]
