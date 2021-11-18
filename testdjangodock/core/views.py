@@ -8,6 +8,8 @@ from django.urls import reverse
 from .forms import ConnexionForm, RegisterForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.db import IntegrityError
+from django.contrib import messages
 
 
 def home(request):
@@ -52,12 +54,12 @@ def register(request):
             username = form.cleaned_data["username"]
             password = form.cleaned_data["password"]
             email = form.cleaned_data["email"]
-            try:
+            try :
                 user = User.objects.create_user(username=username,
-                                     email=email,
-                                     password=password)
-            except :
-                redirect(reverse(register))
+                                 email=email,
+                                 password=password)
+            except IntegrityError :
+                messages.error(request, "Ce nom d'utilisateur est déjà pris.")
     else:
         form = RegisterForm()
 
