@@ -73,9 +73,12 @@ def articles(request):
     articles = wiki.objects.all() # Nous sélectionnons tous nos articles
     return render(request, 'articles.html', {'derniers_articles': articles})
 
-#@login_required
+@login_required
 def user_page(request):
-    return render(request, 'profile_page.html', locals())
+    articles = wiki.objects.all()
+    nb_art = len(articles)
+    current_user = request.user
+    return render(request, 'profile_page.html',  {'derniers_articles': articles, 'user':current_user, 'nb_articles':nb_art})
 
 
 @login_required
