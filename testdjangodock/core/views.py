@@ -73,6 +73,10 @@ def articles(request):
     articles = wiki.objects.all() # Nous sélectionnons tous nos articles
     return render(request, 'articles.html', {'derniers_articles': articles})
 
+#@login_required
+def user_page(request):
+    return render(request, 'profile_page.html', locals())
+
 
 @login_required
 def lire(request, id):

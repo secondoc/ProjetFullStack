@@ -26,5 +26,6 @@ urlpatterns = [
     path("deconnexion/", views.deconnexion),
     path("register/", views.register),
     path("articles/", views.articles),
-    path('article/<int:id>', views.lire, name='lire')
+    path('article/<int:id>', views.lire, name='lire'),
+    path('user/profile/', views.user_page, name='profile')
 ]
