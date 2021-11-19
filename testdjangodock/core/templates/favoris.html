@@ -1,26 +1,32 @@
-<div class="container">
-    <section class="jumbotron text-center bg-white">
-        <div class="container">
-            <h1>Favoris de l'utilisateur</h1>
-        </div>
-    </section>
-    <div class="row">
-        {% for a in new %}
-        <div class="col-md-4">
-            <a class "text-dark" href="{{a.get_absolute_url}}">
-                <div class="card mb-4 box-shadow">
-                    <h1>
-                        {{a.article}}
-                    </h1>
-                    <div class = "d-flex justify-content-between align-items-center">
-                        <div id="section-favoris">
-                            <a href={% url 'ajout_fav' a.id%} 
-                                class="btn btn-outline-primary">Remove</a>
+{% extends 'base.html' %}
+{% block content %}
+
+    <div class="container">
+        <section class="jumbotron text-center bg-white">
+            <div class="container">
+                <h1>Favoris de l'utilisateur</h1>
+            </div>
+        </section>
+        <div class="row">
+            {% for a in new %}
+            <div class="col-md-4">
+                <a class "text-dark" href="{{a.get_absolute_url}}">
+                    <div class="card mb-4 box-shadow">
+                        <h1>
+                            {{a.article}}
+                        </h1>
+                        <p><a href="{% url 'lire' a.id %}">Accéder à l'article</a></p>
+                        <div class = "d-flex justify-content-between align-items-center">
+                            <div id="section-favoris">
+                                <a href={% url 'ajout_fav' a.id%} 
+                                    class="btn btn-outline-primary">Remove</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                </a>
+            </div>
+            {% endfor %}
         </div>
-        {% endfor %}
     </div>
-</div>
+
+{% endblock %}

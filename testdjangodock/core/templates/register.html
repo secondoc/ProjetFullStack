@@ -1,30 +1,36 @@
-{% load static %}
+{% extends 'base.html' %}
+
+{% block content %}
+
+  {% load static %}
 
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 
 
-<h1>S'enregistrer</h1>
+  <h1>S'enregistrer</h1>
 
-<div class="login">
+  <div class="login">
 
-  <div class="form">
-    <form method="post" action=".">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Enregistrer" />
+    <div class="form">
+      <form method="post" action=".">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="Enregistrer" />
 
-    </form>
-    <p><a href="../connexion/">Se connecter</a></p>
-    <div>
-    {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
+      </form>
+      <p><a href="../connexion/">Se connecter</a></p>
+      <div>
+      {% if messages %}
+      <ul class="messages">
+          {% for message in messages %}
+          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+      {% endif %}
+      </div>
     </div>
   </div>
-</div>
-<br><a href="/">Accueil</a>
+  <br><a href="/">Accueil</a>
+
+{% endblock %}

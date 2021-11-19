@@ -18,7 +18,7 @@ def home(request):
 
 #On récupère l'id envoyé dans l'URL
 #Et on retourne le nom de l'élement de notre db avec l'ID 1
-def search(request, id):
+def searchid(request, id):
     ls = wiki.objects.get(id=id)
     return HttpResponse('<h1>%s</h1>' % (ls.article))
 
@@ -74,14 +74,6 @@ def articles(request):
     articles = wiki.manager.all() # Nous sélectionnons tous nos articles
     return render(request, 'articles.html', {'derniers_articles': articles})
 
-#@login_required
-def user_page(request):
-    articles = wiki.manager.all()
-    nb_art = len(articles)
-    current_user = request.user
-    return render(request, 'profile_page.html',  {'derniers_articles': articles, 'user':current_user, 'nb_articles':nb_art})
-
-
 @login_required
 def lire(request, id):
     article = get_object_or_404(wiki, id=id)
@@ -100,3 +92,15 @@ def ajout_fav(request, id):
 def liste_fav(request):
     new = wiki.manager.filter(favoris=request.user)
     return render(request, 'favoris.html', {'new':new})
+
+@login_required
+def search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        wikis = wiki.manager.filter(article__contains=searched)
+        return render(request, 'searchbar.html', {
+            'searched':searched,
+            'wikis': wikis
+        })
+    else:
+        return render(request, 'searchbar.html', {})

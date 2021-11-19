@@ -1,28 +1,33 @@
-{% load static %}
+{% extends 'base.html' %}
+
+{% block content %}
+  {% load static %}
 
 
-<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+  <link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
 
 
-<h1>Se connecter</h1>
+  <h1>Se connecter</h1>
 
-<div class="login">
-  {% if error %}
-  <p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
-  {% endif %}
+  <div class="login">
+    {% if error %}
+    <p><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
+    {% endif %}
 
-  {% if user.is_authenticated %}
-  Vous êtes connecté, {{ user.username }} !
-  {% else %}
-  <div class="form">
-    <form method="post" action=".">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <input type="submit" value="Se connecter" />
+    {% if user.is_authenticated %}
+    Vous êtes connecté, {{ user.username }} !
+    {% else %}
+    <div class="form">
+      <form method="post" action=".">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <input type="submit" value="Se connecter" />
 
-    </form>
-    <p><a href="../register/">S'inscrire</a></p>
+      </form>
+      <p><a href="../register/">S'inscrire</a></p>
+    </div>
+    {% endif %}
   </div>
-  {% endif %}
-</div>
-<br><a href="/">Accueil</a>
+  <br><a href="/">Accueil</a>
+
+{% endblock %}

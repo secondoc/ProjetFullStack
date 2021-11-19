@@ -3,9 +3,7 @@ from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 
 #Create your models here
-#On fait la database object appelé TodoList
 class wiki(models.Model):
-    #On définit les attributs de todolist
     #Quand on met un attribut 
     article = models.CharField(_("Article"), max_length=255)
     nb_apparitions = models.IntegerField(_("Nombre d'apparitions"))

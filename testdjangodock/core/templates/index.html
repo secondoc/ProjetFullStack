@@ -1,21 +1,17 @@
-Hello Django/Docker project wiki
+{% extends 'base.html' %}
 
-<ul>
-  <li><a href="connexion/">Connexion</a></li>
-  <li><a href="register/">S'inscrire</a></li>
-  <li><a href="deconnexion/">Deconnexion</a></li>
-  <li><a href="articles/">Articles</a></li>
-  <li><a href="admin/">Admin</a></li>
-  <li><a href="user/profile/">Profile</a></li>
-  <li><a href="favoris/">Favoris</a></li>
-</ul>
+{% block content %}
 
-<div>
-{% if messages %}
-<ul class="messages">
-    {% for message in messages %}
-    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-    {% endfor %}
-</ul>
-{% endif %}
-</div>
+  <h1>Hello Django/Docker project wiki</h1>
+
+  <div>
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}
+      <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+      {% endfor %}
+  </ul>
+  {% endif %}
+  </div>
+
+{% endblock %}

@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    {% if searched %}
+        <h1>Vous avez cherché {{searched}} </h1>
+        <br/>
+        {% for wiki in wikis %}
+            {{wiki}}
+            <p><a href="{% url 'lire' wiki.id %}">Accéder à l'article</a></p>
+            <br/>
+        {% endfor %}
+    {% else %}
+        <h1>Indiquer un mot à chercher</h1>
+    {% endif %}
+
+
+
+{% endblock %}

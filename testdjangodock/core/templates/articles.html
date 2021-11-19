@@ -1,11 +1,16 @@
-<h1>Liste des articles</h1>
 
-{% for article in derniers_articles %}
-    <div class="article">
-    	<h3>{{ article.article }}</h3>
-    	<p>{{ article.notes|truncatewords_html:80 }}</p>
-      <p><a href="{% url 'lire' article.id %}">Lire la suite</a></p>
-    </div>
-{% empty %}
-    <p>Aucun article.</p>
-{% endfor %}
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Liste des articles</h1>
+
+  {% for article in derniers_articles %}
+      <div class="article">
+        <h3>{{ article.article }}</h3>
+        <p>{{ article.notes|truncatewords_html:80 }}</p>
+        <p><a href="{% url 'lire' article.id %}">Lire la suite</a></p>
+      </div>
+  {% empty %}
+      <p>Aucun article.</p>
+  {% endfor %}
+{% endblock %}
