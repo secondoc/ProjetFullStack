@@ -43,7 +43,7 @@ def connexion(request):
 
 def deconnexion(request):
     logout(request)
-    return redirect(reverse(connexion))
+    return redirect(reverse(home))
 
 def register(request):
     error = False
@@ -58,6 +58,8 @@ def register(request):
                 user = User.objects.create_user(username=username,
                                  email=email,
                                  password=password)
+                messages.error(request, "Vous êtes enregistrés")
+                return redirect(home)
             except IntegrityError :
                 messages.error(request, "Ce nom d'utilisateur est déjà pris.")
     else:
