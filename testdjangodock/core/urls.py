@@ -27,5 +27,8 @@ urlpatterns = [
     path("register/", views.register),
     path("articles/", views.articles),
     path('article/<int:id>', views.lire, name='lire'),
-    path('user/profile/', views.user_page, name='profile')
+    path('user/profile/', views.user_page, name='profile'),
+    path('fav/<int:id>', views.ajout_fav, name='ajout_fav'),
+    path('favoris/', views.liste_fav, name='liste_fav')
+    
 ]

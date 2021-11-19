@@ -1,3 +1,4 @@
+from django.http.response import HttpResponseRedirect
 from django.shortcuts import render
 from django.http import HttpResponse
 from .models import wiki
@@ -70,12 +71,12 @@ def register(request):
 @login_required
 def articles(request):
     """ Afficher tous les articles de notre blog """
-    articles = wiki.objects.all() # Nous sélectionnons tous nos articles
+    articles = wiki.manager.all() # Nous sélectionnons tous nos articles
     return render(request, 'articles.html', {'derniers_articles': articles})
 
-@login_required
+#@login_required
 def user_page(request):
-    articles = wiki.objects.all()
+    articles = wiki.manager.all()
     nb_art = len(articles)
     current_user = request.user
     return render(request, 'profile_page.html',  {'derniers_articles': articles, 'user':current_user, 'nb_articles':nb_art})
@@ -85,3 +86,17 @@ def user_page(request):
 def lire(request, id):
     article = get_object_or_404(wiki, id=id)
     return render(request, 'lire.html', {'article':article})
+
+@login_required
+def ajout_fav(request, id):
+    art = get_object_or_404(wiki, id=id)
+    if art.favoris.filter(id=request.user.id).exists():
+        art.favoris.remove(request.user)
+    else:
+        art.favoris.add(request.user)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+@login_required
+def liste_fav(request):
+    new = wiki.manager.filter(favoris=request.user)
+    return render(request, 'favoris.html', {'new':new})

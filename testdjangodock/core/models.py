@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 from django.utils.translation import gettext as _
 
 #Create your models here
@@ -11,6 +12,8 @@ class wiki(models.Model):
     moyenne_vus = models.FloatField(_("Moyenne du nombre de vus"))
     notes = models.CharField(_("Notes/about"), max_length=255)
     classe = models.CharField(_("Class"), max_length=255)
+    favoris = models.ManyToManyField(User, related_name ='favoris', default=None, blank=True)
+    manager = models.Manager()
     def __str__(self):
         return self.article
 

@@ -1,7 +1,10 @@
+
 <h1>{{ article.titre }} <span class="small">{{ article.article }}</span></h1>
+<a href="{% url 'ajout_fav' article.id %}" class="btn btn-outline-primary">Ajouter aux favoris</a>
+
 <p class="infos">Cet article apparait {{ article.nb_apparitions }} fois</p>
 <div class="contenu">
-  <p>Notes:</p>
+  <p>Notes:</p> 
   {{ article.notes|linebreaks }}
 </div>
 <div class="classe">
